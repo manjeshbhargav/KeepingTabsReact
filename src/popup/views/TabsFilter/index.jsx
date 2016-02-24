@@ -9,18 +9,12 @@ export default class TabsFilter extends React.Component {
     onUpdate: React.PropTypes.func.isRequired
   };
   //
-  // Store reference to input element.
-  //
-  refer (input) {
-    this.kwdin = input;
-  }
-  //
   // KeyUp handler.
   //
   keyup () {
     setTimeout((() => {
-      // Call the update handler for this component.
-      this.props.onUpdate(this.kwdin.value);
+      // Call onUpdate() to rerender only matching tabs.
+      this.props.onUpdate(this.refs.keyword.value);
     }).bind(this), 50);
   }
   //
@@ -30,7 +24,7 @@ export default class TabsFilter extends React.Component {
     return (
       <input type="text"
         placeholder="Find tabs"
-        ref={::this.refer}
+        ref="keyword"
         onKeyUp={::this.keyup}
         autofocus
       />

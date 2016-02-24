@@ -17,16 +17,19 @@ export default class Tabs extends React.Component {
     })
   };
   //
+  // Constructor.
+  //
+  constructor (props) {
+    // Call base class constructor.
+    super(props);
+    // Set initial state.
+    this.state = {data: []};
+  }
+  //
   // Highlight matched pattern.
   //
   highlight (match: string) {
     return (match ? `<strong>${match}</strong>` : match);
-  }
-  //
-  // Set initial state.
-  //
-  setInitialState () {
-    this.setState({data: []});
   }
   //
   // Update state based on filter keyword.
