@@ -34,10 +34,10 @@ export default class Tabs extends React.Component {
   //
   // Update state based on filter keyword.
   //
-  updateState (kwd: string) {
+  updateState (keyword: string) {
     this.setState({
       data: this.props.data.map(tab => {
-        let re = new RegExp(kwd, 'gi'),
+        let re = new RegExp(keyword, 'gi'),
             _tab = {};
         // Make a copy of tab object.
         Object.keys(tab).forEach(key => {_tab[key] = tab[key]});

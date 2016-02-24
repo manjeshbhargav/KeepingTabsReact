@@ -26,7 +26,7 @@ export default class TabsFilter extends React.Component {
         placeholder="Find tabs"
         ref="keyword"
         onKeyUp={::this.keyup}
-        autofocus
+        autoFocus={true}
       />
     );
   }
