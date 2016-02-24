@@ -41,4 +41,4 @@ class _Message {
   }
 }
 
-export var Message = new _Message();
+export default new _Message();

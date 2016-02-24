@@ -1,4 +1,4 @@
-import { Message } from 'common/Message';
+import Message from 'common/Message';
 //
 // API to manage open tabs
 //
@@ -51,4 +51,4 @@ class _Tabs {
   }
 }
 
-export var Tabs = new _Tabs();
+export default new _Tabs();

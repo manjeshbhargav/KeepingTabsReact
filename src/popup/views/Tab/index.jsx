@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Message } from 'common/Message';
+import Message from 'common/Message';
 import './index.less';
 //
 // Component that renders a link to a particular open tab.
