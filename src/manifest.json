@@ -1,0 +1,19 @@
+{
+    "name": "Keeping Tabs",
+    "version": "__version__",
+    "manifest_version": 2,
+    "icons": {},
+    "browser_action": {
+      "default_popup": "popup.html"
+    },
+    "background": {
+      "scripts": [
+        "background.js"
+      ]
+    },
+    "permissions": [
+      "chrome://favicon/*",
+      "*://*/*/",
+      "tabs"
+    ]
+}
