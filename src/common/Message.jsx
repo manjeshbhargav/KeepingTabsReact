@@ -26,7 +26,7 @@ class _Message {
         callback = typeof(rest[0]) == 'function' ? rest[0] : rest[1];
 
     callback = typeof(callback) == 'function' ? callback : (() => {});
-    chrome.runtime.sendMessage({type: type, data: data}, callback);
+    chrome.runtime.sendMessage({ type, data }, callback);
   }
   //
   // Listen for a particular type of message and an

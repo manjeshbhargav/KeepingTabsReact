@@ -38,9 +38,7 @@ export default class Tabs extends React.Component {
     this.setState({
       data: this.props.data.map(tab => {
         let re = new RegExp(keyword, 'gi'),
-            _tab = {};
-        // Make a copy of tab object.
-        Object.keys(tab).forEach(key => {_tab[key] = tab[key]});
+            _tab = {...tab};
         // If title or url matches kwd, then show the tab.
         // Otherwise hide it.
         if (re.test(_tab.title) || re.test(_tab.url)) {

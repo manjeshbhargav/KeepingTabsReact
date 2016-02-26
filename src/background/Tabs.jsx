@@ -25,21 +25,15 @@ class _Tabs {
   get (callback: Function) {
     callback = callback || (tabs => {});
     chrome.tabs.query({}, tabs => {
-      let _tabs = [];
-      tabs.forEach(tab => {
-        _tabs.push({
-          id: tab.id,
-          url: tab.url,
-          title: tab.title,
-          active: tab.active,
-          windowId: tab.windowId,
-          favIconUrl: tab.favIconUrl || (
-            'chrome://favicon/' +
-            tab.url.split('/').slice(0, 3).join('/')
-          )
-        });
-      });
-      callback(_tabs);
+      callback(tabs.map(tab => {
+        let { id, url, title, active, windowId, favIconUrl } = tab;
+
+        favIconUrl = favIconUrl || (
+          'chrome://favicon/' +
+          tab.url.split('/').slice(0, 3).join('/')
+        );
+        return { id, url, title, active, windowId, favIconUrl };
+      }));
     });
   }
   //
