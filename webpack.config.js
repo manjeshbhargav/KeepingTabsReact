@@ -18,7 +18,8 @@ module.exports = {
       '.jsx'
     ],
     root: [
-      path.join(__dirname, 'src')
+      path.join(__dirname, 'src'),
+      __dirname
     ],
     alias: {
       'Tab': 'Tab/index',
@@ -41,6 +42,9 @@ module.exports = {
             'es2015',
             'react',
             'stage-0'
+          ],
+          plugins: [
+            'babel-plugin-transform-decorators-legacy'
           ]
         }
       },

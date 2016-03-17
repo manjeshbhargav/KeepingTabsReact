@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Tabs from 'popup/views/Tabs';
 import Message from 'common/Message';
+import TabsAction from 'popup/actions/Tabs';
 import './entry.less';
 
-Message.send('getOpenTabs', tabs => {
-  ReactDOM.render(<Tabs data={tabs}/>, document.querySelector('.app'));
-});
+ReactDOM.render(<Tabs/>, document.querySelector('.app'));
+Message.send('getOpenTabs', tabs => { TabsAction.setTabs(tabs); });
