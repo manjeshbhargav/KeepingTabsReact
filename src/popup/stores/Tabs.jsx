@@ -22,13 +22,13 @@ class TabsStore {
   //
   onFilterTabs (keyword) {
     // Highlight matched pattern
-    var highlight = (match) => {
+    let highlight = (match) => {
       return (match ? `<strong>${match}</strong>` : match);
     };
     // Filter tabs based on keyword
     this.filteredTabs = this.tabs.map(tab => {
       let re = new RegExp(keyword, 'gi'),
-        _tab = {...tab};
+          _tab = {...tab};
       // If title or url matches kwd, then show the tab.
       // Otherwise hide it.
       if (re.test(_tab.title) || re.test(_tab.url)) {

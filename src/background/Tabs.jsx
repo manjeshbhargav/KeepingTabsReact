@@ -2,7 +2,7 @@ import Message from 'common/Message';
 //
 // API to manage open tabs
 //
-class _Tabs {
+class Tabs {
   //
   // Listen for requests to list of open tabs, and to
   // focus on a given tab
@@ -45,4 +45,4 @@ class _Tabs {
   }
 }
 
-export default new _Tabs();
+export default new Tabs();

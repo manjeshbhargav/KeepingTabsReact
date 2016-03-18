@@ -7,10 +7,10 @@ export default class TabsFilter extends React.Component {
   // KeyUp handler.
   //
   keyup () {
-    setTimeout((() => {
+    setTimeout(() => {
       // Perform filterTabs() action.
       TabsAction.filterTabs(this.refs.keyword.value);
-    }), 50);
+    }, 50);
   }
   //
   // Render function.

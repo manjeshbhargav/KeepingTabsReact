@@ -1,7 +1,7 @@
 //
 // Messaging API
 //
-class _Message {
+class Message {
   //
   // Attach chrome message listener and initialize
   // the callback queues based on the message type
@@ -41,4 +41,4 @@ class _Message {
   }
 }
 
-export default new _Message();
+export default new Message();
