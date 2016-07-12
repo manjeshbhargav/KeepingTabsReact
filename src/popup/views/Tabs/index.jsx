@@ -1,66 +1,33 @@
 import React from 'react';
 import classNames from 'classnames';
-import TabsFilter from 'popup/views/TabsFilter';
 import Tab from 'popup/views/Tab';
+import TabsFilter from 'popup/views/TabsFilter';
+import TabsStore from 'popup/stores/Tabs';
+import connectToStores from 'node_modules/alt-utils/lib/connectToStores';
 import './index.less';
 //
 // Component that renders list of open tabs.
 //
+@connectToStores
 export default class Tabs extends React.Component {
   //
   // Type checking the component's properties and state.
   //
   static propTypes = {
-    data: React.PropTypes.array.isRequired,
-    state: React.PropTypes.shape({
-      data: React.PropTypes.array
-    })
+    filteredTabs: React.PropTypes.array
   };
   //
-  // Constructor.
+  // Subscribe to the tabs store.
   //
-  constructor (props) {
-    // Call base class constructor.
-    super(props);
-    // Set initial state.
-    this.state = {data: []};
+  static getStores () {
+    return [ TabsStore ];
   }
   //
-  // Highlight matched pattern.
+  // Get updated props from the tabs store.
   //
-  highlight (match: string) {
-    return (match ? `<strong>${match}</strong>` : match);
-  }
-  //
-  // Update state based on filter keyword.
-  //
-  updateState (keyword: string) {
-    this.setState({
-      data: this.props.data.map(tab => {
-        let re = new RegExp(keyword, 'gi'),
-            _tab = {};
-        // Make a copy of tab object.
-        Object.keys(tab).forEach(key => {_tab[key] = tab[key]});
-        // If title or url matches kwd, then show the tab.
-        // Otherwise hide it.
-        if (re.test(_tab.title) || re.test(_tab.url)) {
-          _tab.title = _tab.title.replace(re, ::this.highlight);
-          _tab.url = _tab.url.replace(re, ::this.highlight);
-          delete _tab.nomatch;
-        }
-        else {
-          _tab.nomatch = true;
-        }
-        // Return the updated tab.
-        return _tab;
-      })
-    });
-  }
-  //
-  // Set state to given data.
-  //
-  componentWillMount () {
-    this.setState({data: this.props.data});
+  static getPropsFromStores () {
+    var filteredTabs = TabsStore.getState()['filteredTabs'];
+    return { filteredTabs };
   }
   //
   // Render function.
@@ -70,10 +37,10 @@ export default class Tabs extends React.Component {
     return (
       <div className="keepingtabs">
         <div className="tabsfilter">
-          <TabsFilter onUpdate={::this.updateState}/>
+          <TabsFilter/>
         </div>
         <ul className="tabs">
-          {this.state.data.map(tab => (<Tab data={tab} key={tab.id}/>))}
+          {this.props.filteredTabs.map(tab => (<Tab data={tab} key={tab.id}/>))}
         </ul>
       </div>
     );
