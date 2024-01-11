@@ -1,7 +1,11 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { msg } from '@root/src/shared/msg';
 
-export function useFilteredTabs(): [chrome.tabs.Tab[], string, Dispatch<SetStateAction<string>>] {
+export function useTabs(): [
+  chrome.tabs.Tab[],
+  string,
+  Dispatch<SetStateAction<string>>,
+] {
   const [tabs, setTabs] = useState<chrome.tabs.Tab[]>([]);
   const [filteredTabs, setFilteredTabs] = useState<chrome.tabs.Tab[]>([]);
   const [filterKeyword, setFilterKeyword] = useState<string>('');
