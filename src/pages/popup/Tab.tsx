@@ -32,6 +32,7 @@ function highlight(text: string, keyword: string) {
 }
 
 export function Tab({
+  active,
   favIconUrl = DEFAULT_FAVICON_URL,
   id,
   windowId,
@@ -53,7 +54,8 @@ export function Tab({
               windowId,
             }
           });
-        }}>
+        }}
+        disabled={active}>
         <ListItemAvatar>
           <Avatar
             src={favIconUrl}
