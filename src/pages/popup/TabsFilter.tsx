@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { TextField } from '@mui/material';
-import { StylesContext } from './popup/StylesProvider';
-import { TabsContext } from './popup/TabsProvider';
+import { StylesContext } from './StylesProvider';
+import { TabsContext } from './TabsProvider';
 
 export function TabsFilter() {
   const { setFilterKeyword } = useContext(TabsContext);
