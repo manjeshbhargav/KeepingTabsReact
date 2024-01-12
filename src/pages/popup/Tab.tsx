@@ -1,12 +1,28 @@
-import { Fragment, useContext } from 'react';
+import {
+  CSSProperties,
+  Fragment,
+  useContext,
+} from 'react';
+
+import {
+  Avatar,
+  ListItem,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
+} from '@mui/material';
+
 import { msg } from '@root/src/shared/msg';
-import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
 import { StylesContext } from './StylesProvider';
 import { TabsContext } from './TabsProvider';
 
 const DEFAULT_FAVICON_URL = '../../../icon-16.png';
 
-function highlight(text: string, keyword: string) {
+function highlightKeyword(
+  text: string,
+  keyword: string,
+  style: CSSProperties
+) {
   const regExp = new RegExp(keyword, 'gi');
   if (keyword === '' || !regExp.test(text)) {
     return text;
@@ -16,7 +32,7 @@ function highlight(text: string, keyword: string) {
     (unmatched) => <span>{unmatched}</span>,
   );
   const highlighted = text.match(regExp).map(
-    (matched) => <strong>{matched}</strong>,
+    (matched) => <strong style={style}>{matched}</strong>,
   );
   const iterator = '0'.repeat(
     unhighlighted.length + highlighted.length,
@@ -39,7 +55,7 @@ export function Tab({
   title,
   url,
 }: chrome.tabs.Tab) {
-  const { avatar } = useContext(StylesContext);
+  const { avatar, highlight } = useContext(StylesContext);
   const { filterKeyword } = useContext(TabsContext);
 
   return (
@@ -63,8 +79,16 @@ export function Tab({
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary={highlight(title, filterKeyword)}
-          secondary={highlight(url, filterKeyword)}>
+          primary={highlightKeyword(
+            title,
+            filterKeyword,
+            highlight,
+          )}
+          secondary={highlightKeyword(
+            url,
+            filterKeyword,
+            highlight,
+          )}>
         </ListItemText>
       </ListItemButton>
     </ListItem>
